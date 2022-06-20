@@ -1,2 +1,2 @@
 go build .
-goustocks.exe GOOG
+goustocks.exe %*

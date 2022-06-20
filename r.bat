@@ -1,1 +1,1 @@
-nodemon --ext go -x "go run ."
+nodemon --ext go -x "go run . %*"
