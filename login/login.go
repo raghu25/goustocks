@@ -1,6 +1,7 @@
 package login
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/raghu25/goustocks/cli"
@@ -36,5 +37,21 @@ func login() *User {
 
 //Public function
 func Login() *User {
-	return login()
+	option := Menu()
+
+	switch option {
+	case 1:
+		return login()
+	case 2:
+		return register()
+	}
+
+	return nil
+}
+
+func Menu() int {
+
+	fmt.Println("Press 1 to Login")
+	fmt.Println("Press 2 to Register")
+	return cli.ReadInt("")
 }
