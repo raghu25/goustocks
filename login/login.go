@@ -35,6 +35,19 @@ func login() *User {
 	}
 }
 
+func register() *User {
+	username := cli.ReadString("Enter user username:")
+	password := cli.ReadString("Enter user password:")
+
+	return &User{
+		username:      username,
+		password:      password,
+		isLoggedIn:    true,
+		lastLoggedIOn: time.Now().String(),
+	}
+
+}
+
 //Public function
 func Login() *User {
 	option := Menu()
