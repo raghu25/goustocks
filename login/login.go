@@ -8,10 +8,11 @@ import (
 )
 
 type User struct {
-	username      string
-	password      string
-	isLoggedIn    bool
-	lastLoggedIOn string
+	Username      string
+	Password      string
+	IsLoggedIn    bool
+	LastLoggedIOn string
+	IsNew         bool
 }
 
 //Private function
@@ -20,17 +21,19 @@ func login() *User {
 	password := cli.ReadString("Enter user password:")
 	if username == "admin" && password == "123" {
 		return &User{
-			username:      username,
-			password:      password,
-			isLoggedIn:    true,
-			lastLoggedIOn: time.Now().String(),
+			Username:      username,
+			Password:      password,
+			IsLoggedIn:    true,
+			LastLoggedIOn: time.Now().String(),
+			IsNew:         false,
 		}
 	} else {
 		return &User{
-			username:      username,
-			password:      password,
-			isLoggedIn:    false,
-			lastLoggedIOn: "",
+			Username:      username,
+			Password:      password,
+			IsLoggedIn:    false,
+			LastLoggedIOn: "",
+			IsNew:         false,
 		}
 	}
 }
@@ -40,10 +43,11 @@ func register() *User {
 	password := cli.ReadString("Enter user password:")
 
 	return &User{
-		username:      username,
-		password:      password,
-		isLoggedIn:    true,
-		lastLoggedIOn: time.Now().String(),
+		Username:      username,
+		Password:      password,
+		IsLoggedIn:    true,
+		LastLoggedIOn: time.Now().String(),
+		IsNew:         true,
 	}
 
 }

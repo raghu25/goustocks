@@ -5,16 +5,21 @@ import (
 	"os"
 
 	"github.com/raghu25/goustocks/login"
+	"github.com/raghu25/goustocks/services"
 )
 
 func main() {
 
 	user := login.Login()
-	fmt.Println(user)
+	fmt.Println("user:", user.Username)
+	if user.IsNew {
+		services.RegisterUser(user)
+	}
+
 	if len(os.Args) < 2 {
 		fmt.Println("you need to pass atleast one symbol")
 		fmt.Println("goustock.exe GOOG")
-		panic(1)
+		return
 	}
 	//argsWithoutProg := os.Args[1:]
 
