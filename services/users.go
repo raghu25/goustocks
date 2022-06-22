@@ -49,6 +49,18 @@ func GetUser(username string) *login.User {
 	return user
 }
 
+func LoginUser(user *login.User) *login.User {
+	nuser := GetUser(user.Username)
+	if nuser == nil {
+		return nil
+	}
+	if nuser.Password == user.Password {
+		return nuser
+	}
+	return nil
+
+}
+
 //Create ....
 func RegisterUser(user *login.User) *login.User {
 

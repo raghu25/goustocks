@@ -18,6 +18,12 @@ reAsk:
 		if user == nil {
 			goto reAsk
 		}
+	} else {
+		user = services.LoginUser(user)
+		if user == nil {
+			fmt.Println("Login failed pls retry again")
+			goto reAsk
+		}
 	}
 	fmt.Println(user)
 	return

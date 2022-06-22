@@ -19,22 +19,13 @@ type User struct {
 func login() *User {
 	username := cli.ReadString("Enter user username:")
 	password := cli.ReadString("Enter user password:")
-	if username == "admin" && password == "123" {
-		return &User{
-			Username:      username,
-			Password:      password,
-			IsLoggedIn:    true,
-			LastLoggedIOn: time.Now().String(),
-			IsNew:         false,
-		}
-	} else {
-		return &User{
-			Username:      username,
-			Password:      password,
-			IsLoggedIn:    false,
-			LastLoggedIOn: "",
-			IsNew:         false,
-		}
+
+	return &User{
+		Username:      username,
+		Password:      password,
+		IsLoggedIn:    false,
+		LastLoggedIOn: "",
+		IsNew:         false,
 	}
 }
 
