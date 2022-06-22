@@ -10,11 +10,17 @@ import (
 
 func main() {
 
+reAsk:
 	user := login.Login()
 	fmt.Println("user:", user.Username)
 	if user.IsNew {
-		services.RegisterUser(user)
+		user = services.RegisterUser(user)
+		if user == nil {
+			goto reAsk
+		}
 	}
+	fmt.Println(user)
+	return
 
 	if len(os.Args) < 2 {
 		fmt.Println("you need to pass atleast one symbol")
