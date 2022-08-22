@@ -15,11 +15,21 @@ type User struct {
 	IsNew         bool
 }
 
-//Private function
+// Private function
 func login() *User {
 	username := cli.ReadString("Enter user username:")
 	password := cli.ReadString("Enter user password:")
 
+	return &User{
+		Username:      username,
+		Password:      password,
+		IsLoggedIn:    false,
+		LastLoggedIOn: "",
+		IsNew:         false,
+	}
+}
+
+func Login2(username string, password string) *User {
 	return &User{
 		Username:      username,
 		Password:      password,
@@ -43,7 +53,7 @@ func register() *User {
 
 }
 
-//Public function
+// Public function
 func Login() *User {
 	option := Menu()
 

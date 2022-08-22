@@ -14,3 +14,16 @@ api key: https://finnhub.io/dashboard
 
 caml0g2ad3i5q2j8l7k0
 
+How to test 
+go test -v
+
+npm install -g nodemon
+
+
+nodemon --ext go -x "go test -v"
+
+
+nodemon --ext go -x "go test -coverprofile=coverage.out"
+
+
+go tool cover -html=coverage.out
