@@ -14,8 +14,16 @@ import (
 
 func main() {
 
+	cli := &cli.CLI{}
+
+	_login := login.LoginStruct{
+		Cli: cli,
+	}
+
+	fmt.Println(_login)
+
 reAsk:
-	user := login.Login()
+	user := _login.Login()
 	fmt.Println("user:", user.Username)
 	if user.IsNew {
 		user = services.RegisterUser(user)

@@ -15,10 +15,14 @@ type User struct {
 	IsNew         bool
 }
 
+type LoginStruct struct {
+	Cli cli.IInputOutput
+}
+
 // Private function
-func login() *User {
-	username := cli.ReadString("Enter user username:")
-	password := cli.ReadString("Enter user password:")
+func (l *LoginStruct) login() *User {
+	username := l.Cli.ReadString("Enter user username:")
+	password := l.Cli.ReadString("Enter user password:")
 
 	return &User{
 		Username:      username,
@@ -29,7 +33,7 @@ func login() *User {
 	}
 }
 
-func Login2(username string, password string) *User {
+func (l *LoginStruct) Login2(username string, password string) *User {
 	return &User{
 		Username:      username,
 		Password:      password,
@@ -39,9 +43,9 @@ func Login2(username string, password string) *User {
 	}
 }
 
-func register() *User {
-	username := cli.ReadString("Enter user username:")
-	password := cli.ReadString("Enter user password:")
+func (l *LoginStruct) register() *User {
+	username := l.Cli.ReadString("Enter user username:")
+	password := l.Cli.ReadString("Enter user password:")
 
 	return &User{
 		Username:      username,
@@ -54,22 +58,22 @@ func register() *User {
 }
 
 // Public function
-func Login() *User {
-	option := Menu()
+func (l *LoginStruct) Login() *User {
+	option := l.Menu()
 
 	switch option {
 	case 1:
-		return login()
+		return l.login()
 	case 2:
-		return register()
+		return l.register()
 	}
 
 	return nil
 }
 
-func Menu() int {
+func (l *LoginStruct) Menu() int {
 
 	fmt.Println("Press 1 to Login")
 	fmt.Println("Press 2 to Register")
-	return cli.ReadInt("")
+	return l.Cli.ReadInt("")
 }

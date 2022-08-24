@@ -9,7 +9,19 @@ import (
 	"strings"
 )
 
-func ReadString(msg string) string {
+type IInputOutput interface {
+	ReadString(msg string) string
+	ReadInt(msg string) int
+	ReadFloat(msg string) float64
+	ReadKey()
+	Clear()
+	Stringfy(data interface{})
+}
+
+type CLI struct {
+}
+
+func (c *CLI) ReadString(msg string) string {
 	fmt.Println(msg)
 
 	reader := bufio.NewReader(os.Stdin)
@@ -23,9 +35,9 @@ func ReadString(msg string) string {
 
 }
 
-func ReadInt(msg string) int {
+func (c *CLI) ReadInt(msg string) int {
 reAsk:
-	text := ReadString(msg)
+	text := c.ReadString(msg)
 	i, err := strconv.Atoi(text)
 	if err != nil {
 		fmt.Printf("Given value is not a valid int %q ", text)
@@ -35,9 +47,9 @@ reAsk:
 
 }
 
-func ReadFloat(msg string) float64 {
+func (c *CLI) ReadFloat(msg string) float64 {
 reAsk:
-	text := ReadString(msg)
+	text := c.ReadString(msg)
 	i, err := strconv.ParseFloat(text, 64)
 	if err != nil {
 		fmt.Printf("Given value is not a valid float %q ", text)
@@ -46,16 +58,16 @@ reAsk:
 	return i
 }
 
-func ReadKey() {
+func (c *CLI) ReadKey() {
 	reader := bufio.NewReader(os.Stdin)
 	reader.ReadString('\n')
 }
 
-func Clear() {
+func (c *CLI) Clear() {
 	fmt.Print("\033[H\033[2J")
 }
 
-func Stringfy(data interface{}) {
+func (c *CLI) Stringfy(data interface{}) {
 	str, _ := json.MarshalIndent(data, "", " ")
 	fmt.Println(string(str))
 }
