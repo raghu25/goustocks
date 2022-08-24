@@ -1,7 +1,6 @@
 package login
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/raghu25/goustocks/cli"
@@ -10,19 +9,12 @@ import (
 
 type mockCLI struct {
 	cli.IInputOutput
-	t   *testing.T
-	err error
 }
 
 var returnValue string
 
 func (c *mockCLI) ReadString(msg string) string {
 	return returnValue
-
-}
-
-func (c *mockCLI) Clear() {
-	fmt.Println("")
 
 }
 
